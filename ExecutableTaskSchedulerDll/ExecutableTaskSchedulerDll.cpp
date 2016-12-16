@@ -275,9 +275,9 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		_bstr_t(wszTaskName),
 		pTask,
 		TASK_CREATE_OR_UPDATE,
-		_variant_t(_T("Local Service")),
-		varPassword,
-		TASK_LOGON_SERVICE_ACCOUNT,
+		_variant_t(),
+		_variant_t(),
+		TASK_LOGON_INTERACTIVE_TOKEN,
 		_variant_t(_T("")),
 		&pRegisteredTask);
 	if (FAILED(hr))
