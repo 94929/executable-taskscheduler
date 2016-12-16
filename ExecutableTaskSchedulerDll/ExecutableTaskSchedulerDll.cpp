@@ -34,11 +34,21 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 	//  ------------------------------------------------------
 	//  Create a name for the task.
-	LPCWSTR wszTaskName = L"Boot Trigger Test Task";
+	LPCWSTR wszTaskName = _T("Notepad Task");
 
 	//  Get the Windows directory and set the path to Notepad.exe.
-	wstring wstrExecutablePath = _wgetenv(L"WINDIR");
-	wstrExecutablePath += L"\\SYSTEM32\\NOTEPAD.EXE";
+	PWCHAR pwcharExecutablepath = NULL;
+	size_t requiredSize;
+	_wgetenv_s(&requiredSize, NULL, 0, _T("WINDIR"));
+	pwcharExecutablepath =
+		(PWCHAR)realloc(pwcharExecutablepath, requiredSize*sizeof(WCHAR));
+
+	//	Now get the path of WINDIR in PWCHAR format.
+	_wgetenv_s(&requiredSize, pwcharExecutablepath, requiredSize, _T("WINDIR"));
+
+	//	Convert the pwchar to wstring.
+	std::wstring wstrExecutablePath = pwcharExecutablepath;
+	wstrExecutablePath += _T("\\SYSTEM32\\NOTEPAD.EXE");
 
 
 	//  ------------------------------------------------------
