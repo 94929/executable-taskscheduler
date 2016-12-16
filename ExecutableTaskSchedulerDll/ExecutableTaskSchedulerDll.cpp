@@ -34,7 +34,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 	//  ------------------------------------------------------
 	//  Create a name for the task.
-	LPCWSTR wszTaskName = _T("Notepad Task");
+	LPCWSTR wszTaskName = _T("Execute Process Task");
 
 	//  Get the Windows directory and set the path to Notepad.exe.
 	PWCHAR pwcharExecutablepath = NULL;
@@ -67,8 +67,11 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	}
 
 	//  Connect to the task service.
-	hr = pService->Connect(_variant_t(), _variant_t(),
-		_variant_t(), _variant_t());
+	hr = pService->Connect(
+		_variant_t(), 
+		_variant_t(),
+		_variant_t(),
+		_variant_t());
 	if (FAILED(hr))
 	{
 		printf("ITaskService::Connect failed: %x", hr);
@@ -120,7 +123,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
-	hr = pRegInfo->put_Author(_T("Author Name"));
+	hr = pRegInfo->put_Author(_T("jsha"));
 	pRegInfo->Release();
 	if (FAILED(hr))
 	{
@@ -263,7 +266,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		TASK_CREATE_OR_UPDATE,
 		_variant_t(),
 		_variant_t(),
-		TASK_LOGON_INTERACTIVE_TOKEN,
+		/*TASK_LOGON_INTERACTIVE_TOKEN*/ TASK_LOGON_NONE,
 		_variant_t(),
 		&pRegisteredTask);
 	if (FAILED(hr))
@@ -275,7 +278,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
-	printf("\n Success! Task successfully registered. ");
+	printf("Success! Task successfully registered. \n");
 
 	//  ------------------------------------------------------
 	//  Clean up.
