@@ -196,10 +196,6 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
-	hr = pBootTrigger->put_Id(_bstr_t(_T("Trigger1")));
-	if (FAILED(hr))
-		printf("\nCannot put the trigger ID: %x", hr);
-
 	pBootTrigger->Release();
 	if (FAILED(hr))
 	{
