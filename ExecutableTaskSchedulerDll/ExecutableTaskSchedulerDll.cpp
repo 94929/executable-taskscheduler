@@ -81,7 +81,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	//  Get the pointer to the root task folder.  
 	//  This folder will hold the new task that is registered.
 	ITaskFolder *pRootFolder = NULL;
-	hr = pService->GetFolder(_bstr_t(L"\\"), &pRootFolder);
+	hr = pService->GetFolder(_bstr_t(_T("\\")), &pRootFolder);
 	if (FAILED(hr))
 	{
 		printf("Cannot get Root Folder pointer: %x", hr);
@@ -120,7 +120,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
-	hr = pRegInfo->put_Author(L"Author Name");
+	hr = pRegInfo->put_Author(_T("Author Name"));
 	pRegInfo->Release();
 	if (FAILED(hr))
 	{
@@ -196,7 +196,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
-	hr = pBootTrigger->put_Id(_bstr_t(L"Trigger1"));
+	hr = pBootTrigger->put_Id(_bstr_t(_T("Trigger1")));
 	if (FAILED(hr))
 		printf("\nCannot put the trigger ID: %x", hr);
 
@@ -204,16 +204,16 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	//  format should be YYYY-MM-DDTHH:MM:SS(+-)(timezone).
 	//  For example, the start boundary below
 	//  is January 1st 2005 at 12:05
-	hr = pBootTrigger->put_StartBoundary(_bstr_t(L"2005-01-01T12:05:00"));
+	hr = pBootTrigger->put_StartBoundary(_bstr_t(_T("2005-01-01T12:05:00")));
 	if (FAILED(hr))
 		printf("\nCannot put the start boundary: %x", hr);
 
-	hr = pBootTrigger->put_EndBoundary(_bstr_t(L"2015-05-02T08:00:00"));
+	hr = pBootTrigger->put_EndBoundary(_bstr_t(_T("2015-05-02T08:00:00")));
 	if (FAILED(hr))
 		printf("\nCannot put the end boundary: %x", hr);
 
 	// Delay the task to start 30 seconds after system start. 
-	hr = pBootTrigger->put_Delay(L"PT30S");
+	hr = pBootTrigger->put_Delay(_T("PT30S"));
 	pBootTrigger->Release();
 	if (FAILED(hr))
 	{
@@ -289,10 +289,10 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		_bstr_t(wszTaskName),
 		pTask,
 		TASK_CREATE_OR_UPDATE,
-		_variant_t(L"Local Service"),
+		_variant_t(_T("Local Service")),
 		varPassword,
 		TASK_LOGON_SERVICE_ACCOUNT,
-		_variant_t(L""),
+		_variant_t(_T("")),
 		&pRegisteredTask);
 	if (FAILED(hr))
 	{
