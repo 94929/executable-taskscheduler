@@ -197,14 +197,6 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	}
 
 	pBootTrigger->Release();
-	if (FAILED(hr))
-	{
-		printf("\nCannot put delay for boot trigger: %x", hr);
-		pRootFolder->Release();
-		pTask->Release();
-		CoUninitialize();
-		return 1;
-	}
 
 
 	//  ------------------------------------------------------
@@ -265,16 +257,14 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	//  ------------------------------------------------------
 	//  Save the task in the root folder.
 	IRegisteredTask *pRegisteredTask = NULL;
-	VARIANT varPassword;
-	varPassword.vt = VT_EMPTY;
 	hr = pRootFolder->RegisterTaskDefinition(
 		_bstr_t(wszTaskName),
 		pTask,
 		TASK_CREATE_OR_UPDATE,
-		_variant_t(_T("")),
-		_variant_t(_T("")),
+		_variant_t(),
+		_variant_t(),
 		TASK_LOGON_INTERACTIVE_TOKEN,
-		_variant_t(_T("")),
+		_variant_t(),
 		&pRegisteredTask);
 	if (FAILED(hr))
 	{
