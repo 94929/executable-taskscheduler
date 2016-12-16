@@ -15,10 +15,10 @@
 
 #include <windows.h>
 #include <iostream>
-#include <stdio.h>
 #include <comdef.h>
 
 //  Include the task header file.
 #include <taskschd.h>
+
 #pragma comment(lib, "taskschd.lib")
 #pragma comment(lib, "comsupp.lib")

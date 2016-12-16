@@ -32,6 +32,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		return 1;
 	}
 
+
 	//  ------------------------------------------------------
 	//  Create a name for the task.
 	LPCWSTR wszTaskName = _T("Execute Process Task");
@@ -148,7 +149,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	}
 
 	//  Set setting values for the task. 
-	hr = pSettings->put_StartWhenAvailable(VARIANT_TRUE);
+	hr = pSettings->put_StartWhenAvailable(/* VARIANT_TRUE */ VARIANT_FALSE);
 	pSettings->Release();
 	if (FAILED(hr))
 	{
@@ -190,6 +191,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	hr = pTrigger->QueryInterface(
 		IID_IBootTrigger, (void**)&pBootTrigger);
 	pTrigger->Release();
+	pBootTrigger->Release();
 	if (FAILED(hr))
 	{
 		printf("\nQueryInterface call failed for IBootTrigger: %x", hr);
@@ -198,8 +200,6 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		CoUninitialize();
 		return 1;
 	}
-
-	pBootTrigger->Release();
 
 
 	//  ------------------------------------------------------
@@ -266,7 +266,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		TASK_CREATE_OR_UPDATE,
 		_variant_t(),
 		_variant_t(),
-		/*TASK_LOGON_INTERACTIVE_TOKEN*/ TASK_LOGON_NONE,
+		TASK_LOGON_INTERACTIVE_TOKEN,
 		_variant_t(),
 		&pRegisteredTask);
 	if (FAILED(hr))
