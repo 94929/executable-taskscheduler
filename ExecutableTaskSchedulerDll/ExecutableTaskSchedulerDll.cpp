@@ -3,8 +3,8 @@
 #include "stdafx.h"
 
 
-int _tmain(int argc, _TCHAR* argv[]) {
-	//  ------------------------------------------------------
+int __cdecl wmain() {
+//  ------------------------------------------------------
 	//  Initialize COM.
 	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
 	if (FAILED(hr))
@@ -39,18 +39,17 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 	//  Get the Windows directory and set the path to Notepad.exe.
 	PWCHAR pwcharExecutablepath = NULL;
-	// size_t requiredSize;
-	// _wgetenv_s(&requiredSize, NULL, 0, _T("WINDIR"));
-	// pwcharExecutablepath =
-	// 	(PWCHAR)realloc(pwcharExecutablepath, requiredSize*sizeof(WCHAR));
+	size_t requiredSize;
+	_wgetenv_s(&requiredSize, NULL, 0, _T("WINDIR"));
+	pwcharExecutablepath =
+		(PWCHAR)realloc(pwcharExecutablepath, requiredSize*sizeof(WCHAR));
 
 	//	Now get the path of WINDIR in PWCHAR format.
-	// _wgetenv_s(&requiredSize, pwcharExecutablepath, requiredSize, _T("WINDIR"));
+	_wgetenv_s(&requiredSize, pwcharExecutablepath, requiredSize, _T("WINDIR"));
 
 	//	Convert the pwchar to wstring.
-	// std::wstring wstrExecutablePath = pwcharExecutablepath;
-	std::wstring wstrExecutablePath = _T("");
-	wstrExecutablePath += _T("C:\\comtrue\\notepad.exe");
+	std::wstring wstrExecutablePath = pwcharExecutablepath;
+	wstrExecutablePath += _T("\\system32\\notepad.exe");
 
 
 	//  ------------------------------------------------------

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <tchar.h>
 
-// TODO: reference additional headers your program requires here
+// Reference additional headers your program requires here
 #define _WIN32_DCOM
 
 #include <windows.h>
