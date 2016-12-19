@@ -56,7 +56,7 @@ int __cdecl wmain() {
 
 	//	Convert the pwchar to wstring.
 	std::wstring wstrExecutablePath = pwcharExecutablePath;
-	wstrExecutablePath += _T("\\comtrue\\notepad.exe");
+	wstrExecutablePath += _T("\\comtrue\\hi.jpg");
 
 
 	//  ------------------------------------------------------
