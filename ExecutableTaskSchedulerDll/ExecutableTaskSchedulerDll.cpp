@@ -63,6 +63,8 @@ EXECUTABLETASKSCHEDULERDLL_API int fnExecutableTaskSchedulerDll(void)
 
 	//	Convert the pwchar to wstring.
 	std::wstring wstrExecutablePath = pwcharExecutablePath;
+
+	//  Set the path of the process which will be running.
 	wstrExecutablePath += _T("\\comtrue\\Procmon.exe");
 
 
