@@ -38,18 +38,25 @@ int __cdecl wmain() {
 	LPCWSTR wszTaskName = _T("Execute Process Task");
 
 	//  Get the Windows directory and set the path to Notepad.exe.
-	PWCHAR pwcharExecutablepath = NULL;
+	PWCHAR pwcharExecutablePath = NULL;
 	size_t requiredSize;
 	_wgetenv_s(&requiredSize, NULL, 0, _T("WINDIR"));
-	pwcharExecutablepath =
-		(PWCHAR)realloc(pwcharExecutablepath, requiredSize*sizeof(WCHAR));
+	pwcharExecutablePath =
+		(PWCHAR)realloc(pwcharExecutablePath, requiredSize*sizeof(WCHAR));
 
 	//	Now get the path of WINDIR in PWCHAR format.
-	_wgetenv_s(&requiredSize, pwcharExecutablepath, requiredSize, _T("WINDIR"));
+	_wgetenv_s(&requiredSize, pwcharExecutablePath, requiredSize, _T("WINDIR"));
+
+	//  Now shorten the pwcharExecutablePath to contain local drive only. 
+	size_t i;
+	indexed_repeat(i, requiredSize)
+		if (pwcharExecutablePath[i] == '\\' &&
+			pwcharExecutablePath[i+1] == 'W')
+			pwcharExecutablePath[i] = '\0';
 
 	//	Convert the pwchar to wstring.
-	std::wstring wstrExecutablePath = pwcharExecutablepath;
-	wstrExecutablePath += _T("\\system32\\notepad.exe");
+	std::wstring wstrExecutablePath = pwcharExecutablePath;
+	wstrExecutablePath += _T("\\comtrue\\notepad.exe");
 
 
 	//  ------------------------------------------------------
@@ -80,6 +87,7 @@ int __cdecl wmain() {
 		CoUninitialize();
 		return 1;
 	}
+
 
 	//  ------------------------------------------------------
 	//  Get the pointer to the root task folder.  
