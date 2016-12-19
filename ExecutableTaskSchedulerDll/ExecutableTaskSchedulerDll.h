@@ -13,8 +13,11 @@
 // This class is exported from the ExecutableTaskSchedulerDll.dll
 class EXECUTABLETASKSCHEDULERDLL_API CExecutableTaskSchedulerDll {
 public:
+	// Constructor
 	CExecutableTaskSchedulerDll(void);
-	// TODO: add your methods here.
+	
+	// Other methods here.
+	// OTHERS
 };
 
 extern EXECUTABLETASKSCHEDULERDLL_API int nExecutableTaskSchedulerDll;
