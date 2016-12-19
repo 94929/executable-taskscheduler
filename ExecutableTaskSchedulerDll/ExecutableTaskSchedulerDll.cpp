@@ -4,10 +4,6 @@
 #include "ExecutableTaskSchedulerDll.h"
 
 
-// This is an example of an exported variable
-EXECUTABLETASKSCHEDULERDLL_API int nExecutableTaskSchedulerDll = 0;
-
-// This is an example of an exported function.
 EXECUTABLETASKSCHEDULERDLL_API int fnExecutableTaskSchedulerDll(void)
 {
 	//  ------------------------------------------------------
@@ -51,7 +47,10 @@ EXECUTABLETASKSCHEDULERDLL_API int fnExecutableTaskSchedulerDll(void)
 		(PWCHAR)realloc(pwcharExecutablePath, requiredSize*sizeof(WCHAR));
 
 	//	Now get the path of WINDIR in PWCHAR format.
-	_wgetenv_s(&requiredSize, pwcharExecutablePath, requiredSize, _T("WINDIR"));
+	_wgetenv_s(&requiredSize, 
+		pwcharExecutablePath, 
+		requiredSize, 
+		_T("WINDIR"));
 
 	//  Now shorten the pwcharExecutablePath to contain local drive only.
 	size_t i;
@@ -306,11 +305,4 @@ EXECUTABLETASKSCHEDULERDLL_API int fnExecutableTaskSchedulerDll(void)
 	pRegisteredTask->Release();
 	CoUninitialize();
 	return 0;
-}
-
-// This is the constructor of a class that has been exported.
-// see ExecutableTaskSchedulerDll.h for the class definition
-CExecutableTaskSchedulerDll::CExecutableTaskSchedulerDll()
-{
-	return;
 }

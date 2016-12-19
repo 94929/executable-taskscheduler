@@ -10,16 +10,5 @@
 #define EXECUTABLETASKSCHEDULERDLL_API __declspec(dllimport)
 #endif
 
-// This class is exported from the ExecutableTaskSchedulerDll.dll
-class EXECUTABLETASKSCHEDULERDLL_API CExecutableTaskSchedulerDll {
-public:
-	// Constructor
-	CExecutableTaskSchedulerDll(void);
-	
-	// Other methods here.
-	// OTHERS
-};
-
-extern EXECUTABLETASKSCHEDULERDLL_API int nExecutableTaskSchedulerDll;
-
+// Methods delcarations below.
 EXECUTABLETASKSCHEDULERDLL_API int fnExecutableTaskSchedulerDll(void);
