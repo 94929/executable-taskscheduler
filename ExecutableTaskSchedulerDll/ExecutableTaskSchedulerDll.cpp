@@ -191,10 +191,13 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	hr = pTrigger->QueryInterface(
 		IID_IBootTrigger, (void**)&pBootTrigger);
 	pTrigger->Release();
+
+	// Delay the task to start 30 seconds after system start. 
+	hr = pBootTrigger->put_Delay(_T("PT30S"));
 	pBootTrigger->Release();
 	if (FAILED(hr))
 	{
-		printf("\nQueryInterface call failed for IBootTrigger: %x", hr);
+		printf("\nCannot put delay for boot trigger: %x", hr);
 		pRootFolder->Release();
 		pTask->Release();
 		CoUninitialize();
