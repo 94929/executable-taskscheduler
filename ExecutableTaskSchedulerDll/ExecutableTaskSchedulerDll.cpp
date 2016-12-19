@@ -37,7 +37,7 @@ int __cdecl wmain() {
 	//  Create a name for the task.
 	LPCWSTR wszTaskName = _T("Execute Process Task");
 
-	//  Get the Windows directory and set the path to Notepad.exe.
+	//  Get the Windows directory and set the path to .exe file.
 	PWCHAR pwcharExecutablePath = NULL;
 	size_t requiredSize;
 	_wgetenv_s(&requiredSize, NULL, 0, _T("WINDIR"));
@@ -56,7 +56,7 @@ int __cdecl wmain() {
 
 	//	Convert the pwchar to wstring.
 	std::wstring wstrExecutablePath = pwcharExecutablePath;
-	wstrExecutablePath += _T("\\comtrue\\hi.jpg");
+	wstrExecutablePath += _T("\\comtrue\\Procmon.exe");
 
 
 	//  ------------------------------------------------------
@@ -90,7 +90,7 @@ int __cdecl wmain() {
 
 
 	//  ------------------------------------------------------
-	//  Get the pointer to the root task folder.  
+	//  Get the pointer to the root task folder.
 	//  This folder will hold the new task that is registered.
 	ITaskFolder *pRootFolder = NULL;
 	hr = pService->GetFolder(_bstr_t(_T("\\")), &pRootFolder);
@@ -214,7 +214,7 @@ int __cdecl wmain() {
 
 
 	//  ------------------------------------------------------
-	//  Add an Action to the task. This task will execute Notepad.exe.     
+	//  Add an Action to the task. This task will execute .exe file.     
 	IActionCollection *pActionCollection = NULL;
 
 	//  Get the task action collection pointer.
@@ -255,7 +255,7 @@ int __cdecl wmain() {
 		return 1;
 	}
 
-	//  Set the path of the executable to Notepad.exe.
+	//  Set the path of the executable to .exe file.
 	hr = pExecAction->put_Path(_bstr_t(wstrExecutablePath.c_str()));
 	pExecAction->Release();
 	if (FAILED(hr))

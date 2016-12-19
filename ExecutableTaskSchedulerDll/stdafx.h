@@ -23,5 +23,4 @@
 #pragma comment(lib, "taskschd.lib")
 #pragma comment(lib, "comsupp.lib")
 
-#define repeat(n) for(int i=0; i<n; i++)
 #define indexed_repeat(i, n) for (i=0; i<n; i++)
