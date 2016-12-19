@@ -7,13 +7,17 @@
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
+// Exclude rarely-used stuff from Windows headers.
+#define WIN32_LEAN_AND_MEAN             
 
-// Reference additional headers your program requires here
+// Windows Header Files.
+#include <windows.h>
+
+// Reference additional headers your program requires here.
 #define _WIN32_DCOM
 
-#include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
 #include <iostream>
 #include <comdef.h>
 

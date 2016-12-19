@@ -1,8 +1,8 @@
 ========================================================================
-    CONSOLE APPLICATION : ExecutableTaskSchedulerDll Project Overview
+    DYNAMIC LINK LIBRARY : ExecutableTaskSchedulerDll Project Overview
 ========================================================================
 
-AppWizard has created this ExecutableTaskSchedulerDll application for you.
+AppWizard has created this ExecutableTaskSchedulerDll DLL for you.
 
 This file contains a summary of what you will find in each of the files that
 make up your ExecutableTaskSchedulerDll application.
@@ -22,7 +22,7 @@ ExecutableTaskSchedulerDll.vcxproj.filters
     "Source Files" filter).
 
 ExecutableTaskSchedulerDll.cpp
-    This is the main application source file.
+    This is the main DLL source file.
 
 /////////////////////////////////////////////////////////////////////////////
 Other standard files:
